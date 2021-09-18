@@ -1,4 +1,4 @@
-package br.com.chronosacademy.media;
+package br.com.chronosacademy;
 
 public class Media {
 
