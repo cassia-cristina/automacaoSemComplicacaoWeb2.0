@@ -7,7 +7,11 @@
 ##### **Assuntos abordados**:
 
 - TDD
-- Git para QAs
+- Git
 - WebDriver
 - Anotações Junit
+- Xpath e CSS Selector
+- Design Pattern
+- Page Objects
+- Page Factory
 
