@@ -12,10 +12,6 @@ public class Driver {
 
     public Driver(String navegador) {
         switch (navegador){
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                break;
             case "ie":
                 WebDriverManager.iedriver().setup();
                 driver = new InternetExplorerDriver();
@@ -28,6 +24,7 @@ public class Driver {
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
                 break;
+            case "chrome":
             default:
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
