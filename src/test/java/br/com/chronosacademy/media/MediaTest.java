@@ -3,7 +3,8 @@ package br.com.chronosacademy.media;
 import br.com.chronosacademy.Media;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 
 public class MediaTest {
 
