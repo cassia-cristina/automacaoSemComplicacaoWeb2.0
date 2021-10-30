@@ -2,8 +2,9 @@
 Funcionalidade: Login
 
   Contexto:
-    Dado que a modal esteja sendo exibida
+  Dado que a modal esteja sendo exibida
 
+@fecharModal
   Cenario: Fechar a modal ao clicar fora da mesma
     Quando for realizado um clique fora da modal
     Entao a janela modal deve ser fechada
@@ -18,7 +19,7 @@ Funcionalidade: Login
 
   Esquema do Cenario: Realizar login com <identificacao>
     Quando os campos de login forem preenchidos da seguinte forma
-      | login    | <login>>   |
+      | login    | <login>    |
       | password | <password> |
       | remember | <remember> |
     Quando for realizado o clique no botao sign in

@@ -1,6 +1,7 @@
 package br.com.chronosacademy.steps;
 
 import br.com.chronosacademy.core.Driver;
+import br.com.chronosacademy.enums.Browser;
 import br.com.chronosacademy.pages.LoginPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -16,12 +17,12 @@ public class LoginSteps {
 
     @Before
     public void iniciaNavegador(){
-        new Driver("chrome");
+        new Driver(Browser.FIREFOX);
     }
 
     @After
     public void fechaNavegador(){
-        Driver.getDriver().quit();
+        //Driver.getDriver().quit();
     }
 
     @Dado("que a modal esteja sendo exibida")
@@ -37,9 +38,12 @@ public class LoginSteps {
     }
 
     @Entao("a janela modal deve ser fechada")
-    public void aJanelaModalDeveSerFechada() {
-        throw new io.cucumber.java.PendingException();
-
+    public void aJanelaModalDeveSerFechada() throws Exception {
+        try{
+            loginPage.invisibilityOfBtnFechar();
+        } catch (Exception e){
+            throw new Exception("A janela modal não foi fechada");
+        }
     }
 
     @Quando("for realizado um clique no icone de fechar a modal")
@@ -63,7 +67,6 @@ public class LoginSteps {
         boolean remember = Boolean.parseBoolean(map.get("remember"));
         loginPage.setInpPassword(username);
         loginPage.setInpPassword(password);
-        loginPage.clickInpRemember();
         if(remember) loginPage.clickInpRemember();
     }
 
@@ -87,4 +90,5 @@ public class LoginSteps {
         boolean enabled = loginPage.isBtnSignIn();
         Assert.assertFalse(enabled);
     }
+
 }

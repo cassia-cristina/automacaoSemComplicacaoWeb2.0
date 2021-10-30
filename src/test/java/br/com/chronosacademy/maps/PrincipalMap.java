@@ -10,6 +10,4 @@ public class PrincipalMap {
     @FindBy(xpath = "//section[2]/div[3]//a")
     public WebElement btnTitulo;
 
-
-
 }
