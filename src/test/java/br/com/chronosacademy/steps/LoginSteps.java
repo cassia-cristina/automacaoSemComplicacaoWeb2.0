@@ -19,7 +19,7 @@ public class LoginSteps {
 
     @Before
     public void iniciaNavegador(){
-        new Driver(Browser.FIREFOX);
+        new Driver(Browser.CHROME);
     }
 
     @After

@@ -19,6 +19,7 @@ public class LoginPage {
     }
 
     public void clickBtnFechar(){
+        Driver.visibilityOf(loginMap.btnFechar);
         aguardarLoader();
         loginMap.btnFechar.click();
     }

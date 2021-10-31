@@ -21,4 +21,6 @@
 - Maps e page
 - Steps e wait
 - Try/Catch e Exception
+- Enums
+- Reports
 
