@@ -14,10 +14,12 @@ public class LoginPage {
 
     public void clickBtnLogin(){
         Driver.visibilityOf(loginMap.btnLogin);
+        aguardarLoader();
         loginMap.btnLogin.click();
     }
 
     public void clickBtnFechar(){
+        aguardarLoader();
         loginMap.btnFechar.click();
     }
 
@@ -26,22 +28,30 @@ public class LoginPage {
     }
 
     public void setInpUserName(String username){
-        loginMap.inpUserName.sendKeys(username);
+        if(username != null) {
+            loginMap.inpUserName.sendKeys(username);
+        }
     }
 
     public void setInpPassword(String password){
-        loginMap.inpPassword.sendKeys(password);
+        if(password != null){
+            loginMap.inpPassword.sendKeys(password);
+        }
     }
 
     public void clickInpRemember(){
+        aguardarLoader();
         loginMap.inpRemember.click();
     }
 
     public void clicklinkCreateAccount(){
+        Driver.visibilityOf(loginMap.linkCreateAccount);
+        aguardarLoader();
         loginMap.linkCreateAccount.click();
     }
 
     public void clickBtnSignIn(){
+        aguardarLoader();
         loginMap.btnSignIn.click();
     }
 
@@ -51,10 +61,25 @@ public class LoginPage {
 
     public void visibilyOfBtnFechar(){
         Driver.visibilityOf(loginMap.btnFechar);
+        aguardarLoader();
     }
 
     public void invisibilityOfBtnFechar(){
         Driver.invisibilityOf(loginMap.btnFechar);
+    }
+
+    public void aguardarLoader(){
+        Driver.attributeChange(loginMap.divLoader,"display","none");
+    }
+
+    public String getUsuarioLogado(){
+        Driver.visibilityOf(loginMap.textLogado);
+        return loginMap.textLogado.getText();
+    }
+
+    public String getErroLogin(){
+        Driver.visibilityOf(loginMap.textErroLogin);
+        return loginMap.textErroLogin.getText();
     }
 
 }

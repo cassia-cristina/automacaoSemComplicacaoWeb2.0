@@ -8,7 +8,7 @@ public class LoginMap {
     @FindBy(css = "#menuUser")
     public WebElement btnLogin;
 
-    @FindBy(css = ".loginPopUpCloseBtn")
+    @FindBy(css = ".closeBtn")
     public WebElement btnFechar;
 
     @FindBy(css = ".PopUp")
@@ -28,5 +28,14 @@ public class LoginMap {
 
     @FindBy(linkText = "CREATE NEW ACCOUNT")
     public WebElement linkCreateAccount;
+
+    @FindBy(css = ".loader")
+    public WebElement divLoader;
+
+    @FindBy(css = ".containMiniTitle")
+    public WebElement textLogado;
+
+    @FindBy(xpath = "//label[contains(text(),'Incorrect')]")
+    public WebElement textErroLogin;
 
 }
