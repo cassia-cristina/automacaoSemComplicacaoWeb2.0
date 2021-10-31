@@ -14,4 +14,13 @@
 - Design Pattern
 - Page Objects
 - Page Factory
+- Mapa mental
+- Gherkin
+- Cucumber
+- Runner
+- Maps e page
+- Steps e wait
+- Try/Catch e Exception
+- Enums
+- Reports
 
