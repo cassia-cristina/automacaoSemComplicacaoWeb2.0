@@ -26,9 +26,11 @@ public class LoginSteps {
     }
 
     @After
-    public void fechaNavegador(Scenario cenario){
+    public void fechaNavegador(Scenario cenario) throws Exception {
+        if(cenario.isFailed()){
+            Driver.printScreen("Erro no cenario");
+        }
         Driver.getDriver().quit();
-        System.out.printf("Status do cenário %s: %s",Driver.getNomeCenario(), cenario.getStatus());
     }
 
     @Dado("que a modal esteja sendo exibida")
@@ -70,13 +72,14 @@ public class LoginSteps {
     }
 
     @Quando("os campos de login forem preenchidos da seguinte forma")
-    public void osCamposDeLoginForemPreenchidosDaSeguinteForma(Map<String,String> map) {
+    public void osCamposDeLoginForemPreenchidosDaSeguinteForma(Map<String,String> map) throws Exception {
         username = map.get("login");
         String password = map.get("password");
         boolean remember = Boolean.parseBoolean(map.get("remember"));
         loginPage.setInpUserName(username);
         loginPage.setInpPassword(password);
         if(remember) loginPage.clickInpRemember();
+        Driver.printScreen("Preenchimento dos campos de login");
     }
 
     @Quando("for realizado o clique no botao sign in")
@@ -85,8 +88,9 @@ public class LoginSteps {
     }
 
     @Entao("deve ser possivel logar no sistema")
-    public void deveSerPossivelLogarNoSistema() {
+    public void deveSerPossivelLogarNoSistema() throws Exception {
         Assert.assertEquals(username,loginPage.getUsuarioLogado());
+        Driver.printScreen("Logado no sistema");
     }
 
     @Entao("o sistema deve exibir uma mensagem de erro")
