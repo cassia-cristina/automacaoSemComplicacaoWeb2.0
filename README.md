@@ -23,4 +23,7 @@
 - Try/Catch e Exception
 - Enums
 - Reports
+- Jenkins
+- Criação de diretórios e arquivos
+- Headless
 
