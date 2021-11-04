@@ -7,7 +7,6 @@ import br.com.chronosacademy.pages.PrincipalPage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 public class TesteWeb {
@@ -24,12 +23,10 @@ public class TesteWeb {
         principalPage = new PrincipalPage(driver);
     }
 
-
     public void primeiroTeste(){
         String titulo = principalPage.getTitulo();
         Assert.assertEquals("Porque Tempo É Conhecimento",titulo);
     }
-
 
     public void segundoTeste(){
         cursosPage = new CursosPage(driver);
