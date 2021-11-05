@@ -4,18 +4,13 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
 
- stage('Build') {
-    withSonarQubeEnv('sonar') {
-      mvn install
-    }
-  }
-}
+stages {
+stage('Scan') {
+steps {
+withSonarQubeEnv(installationName: 'sonar') {
+  sh './mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar' }
 
-stage("Quality Gate") { 
-  timeout(time: 5, unit: 'MINUTES') { 
-    def qualityGate = waitForQualityGate() 
-      if (qualityGate.status != 'OK') {
-        error "O código não está de acordo com as regras do Sonar: ${qualityGate.status}"
       }
+    }
   }
 }
