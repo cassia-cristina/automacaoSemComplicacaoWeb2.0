@@ -6,8 +6,7 @@ pipeline {
 
  stage('Build') {
     withSonarQubeEnv('sonar') {
-      def mvnHome = tool 'maven-3.5.0'
-      sh "'${mvnHome}/bin/mvn' -f backend/pom.xml clean package sonar:sonar"
+      mvn install -Dheadless=true
     }
   }
 }
