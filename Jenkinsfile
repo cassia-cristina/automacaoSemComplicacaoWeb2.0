@@ -1,16 +1,4 @@
-pipeline {
-  agent any
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
-
-stages {
-stage('Scan') {
-steps {
-withSonarQubeEnv(installationName: 'sonar') {
-  sh './mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar' }
-
-      }
-    }
- }
-}
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=sonarteste \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=sonarteste
