@@ -8,8 +8,7 @@ stages {
 stage('Scan') {
 steps {
 withSonarQubeEnv(installationName: 'sonar') {
- mvn clean install
- mvn sonar:sonar -Dsonar.login=5f2ba8c86038bc20d95c12ae1fa54d089f5b11ee }
+  mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar }
 
       }
     }
