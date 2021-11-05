@@ -6,7 +6,7 @@ pipeline {
 
  stage('Build') {
     withSonarQubeEnv('sonar') {
-      mvn install -Dheadless=true
+      mvn install
     }
   }
 }
