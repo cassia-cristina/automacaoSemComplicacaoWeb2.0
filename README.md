@@ -26,4 +26,4 @@
 - Jenkins
 - Criação de diretórios e arquivos
 - Headless
-
+- CRUD

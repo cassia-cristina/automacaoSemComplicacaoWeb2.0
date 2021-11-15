@@ -1,18 +1,22 @@
 #language:pt
+@login
 Funcionalidade: Login
+  Como um usuario valido
+  Usuario quer realizar o login
+  Para que possa acessar o sistema com sucesso
 
   Contexto:
     Dado que a modal esteja sendo exibida
 
   @fecharModal
-  Cenario: Fechar a modal ao clicar fora da mesma
-    Quando for realizado um clique fora da modal
-    Entao a janela modal deve ser fechada
+#  Cenario: Fechar a modal ao clicar fora da mesma
+#    Quando for realizado um clique fora da modal
+#    Entao a janela modal deve serr fechada
 
   @fecharModalIcone
-  Cenario: Fechar a modal ao clicar no icone fechar
-    Quando for realizado um clique no icone de fechar a modal
-    Entao a janela modal deve ser fechada
+#  Cenario: Fechar a modal ao clicar no icone fechar
+#    Quando for realizado um clique no icone de fechar a modal
+#    Entao a janela modal deve ser fechada
 
   @abrirNewAccount
   Cenario: Link Create New Account

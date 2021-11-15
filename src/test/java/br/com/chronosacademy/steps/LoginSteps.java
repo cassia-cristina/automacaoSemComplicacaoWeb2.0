@@ -1,6 +1,7 @@
 package br.com.chronosacademy.steps;
 
 import br.com.chronosacademy.core.Driver;
+import br.com.chronosacademy.core.Util;
 import br.com.chronosacademy.enums.Browser;
 import br.com.chronosacademy.pages.LoginPage;
 import br.com.chronosacademy.pages.NewAccountPage;
@@ -19,16 +20,16 @@ public class LoginSteps {
     String username;
 
     @Before
-    public void iniciaNavegador(Scenario cenario){
+    public void iniciaNavegador(Scenario cenario) {
         new Driver(Browser.CHROME);
-        Driver.setNomeCenario(cenario.getName());
-        Driver.criaDiretorio();
+        Util.setNomeCenario(cenario.getName());
+        Util.criaDiretorio();
     }
 
     @After
     public void fechaNavegador(Scenario cenario) throws Exception {
-        if(cenario.isFailed()){
-            Driver.printScreen("Erro no cenario");
+        if (cenario.isFailed()) {
+            Util.printScreen("Erro no cenario");
         }
         Driver.getDriver().quit();
     }
@@ -48,9 +49,9 @@ public class LoginSteps {
 
     @Entao("a janela modal deve ser fechada")
     public void aJanelaModalDeveSerFechada() throws Exception {
-        try{
+        try {
             loginPage.invisibilityOfBtnFechar();
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new Exception("A janela modal não foi fechada");
         }
     }
@@ -66,20 +67,21 @@ public class LoginSteps {
     }
 
     @Entao("a pagina Create New Account deve ser exibida")
-    public void aPaginaCreateNewAccountDeveSerExibida() {
+    public void aPaginaCreateNewAccountDeveSerExibida() throws Exception {
         NewAccountPage newAccountPage = new NewAccountPage();
-        Assert.assertEquals("CREATE ACCOUNT", newAccountPage.getText());
+        Assert.assertEquals("CREATE ACCOUNT", newAccountPage.getTextCreateAccount());
+        Util.printScreen("Abrindo a pagina Create New Account");
     }
 
     @Quando("os campos de login forem preenchidos da seguinte forma")
-    public void osCamposDeLoginForemPreenchidosDaSeguinteForma(Map<String,String> map) throws Exception {
+    public void osCamposDeLoginForemPreenchidosDaSeguinteForma(Map<String, String> map) throws Exception {
         username = map.get("login");
         String password = map.get("password");
         boolean remember = Boolean.parseBoolean(map.get("remember"));
         loginPage.setInpUserName(username);
         loginPage.setInpPassword(password);
-        if(remember) loginPage.clickInpRemember();
-        Driver.printScreen("Preenchimento dos campos de login");
+        if (remember) loginPage.clickInpRemember();
+        Util.printScreen("Preenchimento dos campos de login");
     }
 
     @Quando("for realizado o clique no botao sign in")
@@ -89,19 +91,29 @@ public class LoginSteps {
 
     @Entao("deve ser possivel logar no sistema")
     public void deveSerPossivelLogarNoSistema() throws Exception {
-        Assert.assertEquals(username,loginPage.getUsuarioLogado());
-        Driver.printScreen("Logado no sistema");
+        Assert.assertEquals(username, loginPage.getUsuarioLogado());
+        Util.printScreen("Logado no sistema");
     }
 
     @Entao("o sistema deve exibir uma mensagem de erro")
-    public void oSistemaDeveExibirUmaMensagemDeErro() {
+    public void oSistemaDeveExibirUmaMensagemDeErro() throws Exception {
         Assert.assertEquals("Incorrect user name or password.", loginPage.getErroLogin());
+        Util.printScreen("Usuario invalido ou inexistente");
     }
 
     @Entao("o botao sign in deve permanecer desabilitado")
-    public void oBotaoSignInDevePermanecerDesabilitado() {
+    public void oBotaoSignInDevePermanecerDesabilitado() throws Exception {
         boolean enabled = loginPage.isBtnSignIn();
         Assert.assertFalse(enabled);
+        Util.printScreen("Sign In desabilitado");
+    }
+
+    @Dado("que esteja logado no sistema com")
+    public void queEstejaLogadoNoSistemaCom(Map<String,String> map) throws Exception {
+        queAModalEstejaSendoExibida();
+        osCamposDeLoginForemPreenchidosDaSeguinteForma(map);
+        forRealizadoOCliqueNoBotaoSignIn();
+        deveSerPossivelLogarNoSistema();
     }
 
 }
